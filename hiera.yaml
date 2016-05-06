@@ -1,0 +1,24 @@
+---
+:backends:
+  - yaml
+
+:hierarchy:
+  - %{environment}/hieradata/%{fqdn}
+  - %{environment}/hieradata/common
+
+:yaml:
+  :datadir: '/etc/puppet/environments/'
+
+# :mysql:
+#  :host: qot-test.cisco.com
+#  :user: root
+#  :pass: p1ss
+#  :database: config
+#  :query:
+#    - SELECT val FROM configdata WHERE var='%{key}' AND environment='%{environment}' AND module_name='qotweb'
+#    - SELECT val FROM configdata WHERE var='%{key}' AND environment='%{environment}' AND module_name='qotservice'
+#    - SELECT val FROM configdata WHERE var='%{key}' AND environment='%{environment}' AND module_name='ngvsservice'
+#    - SELECT val FROM configdata WHERE var='%{key}' AND environment='%{environment}' AND module_name='servicecontract'
+#    - SELECT val FROM configdata WHERE var='%{key}' AND environment='%{environment}' AND module_name='tomcat'
+
+:logger: console
