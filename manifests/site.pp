@@ -19,7 +19,7 @@
 import "nodes"
 # Define filebucket 'main':
 filebucket { 'main':
-  server => 'ec2-54-197-22-176.compute-1.amazonaws.com',
+  server => 'master.localdomain',
   path   => false,
 }
 
