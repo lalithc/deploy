@@ -5,3 +5,13 @@ node 'puppet.localdomain' {
 
  
 }
+
+node 'puppet01.localdomain' {
+   include jenkins_1
+
+}
+
+node 'puppet01.localdomain' {
+   include jenkins_2
+
+}
