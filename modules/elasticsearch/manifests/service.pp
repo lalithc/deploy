@@ -1,0 +1,4 @@
+class elasticsearch::service{
+
+
+}

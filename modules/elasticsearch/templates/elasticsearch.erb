@@ -1,0 +1,54 @@
+#!/bin/bash
+# description: elasticsearch Start Stop Restart
+# processname: elasticsearch
+# chkconfig: 234 20 80
+JAVA_HOME="/apps/jdk8"
+export JAVA_HOME
+PATH=$JAVA_HOME/bin:$PATH
+export PATH
+ES_HOME="/apps/elasticsearch"
+export ES_HOME
+
+#TOMCAT_USAGE is the message if this script is called without any options
+ES_USAGE="Usage: $0 {\e[00;32mstart\e[00m|\e[00;31mstop\e[00m|\e[00;31mkill\e[00m|\e[00;32mstatus\e[00m|\e[00;31mrestart\e[00m}"
+ES_USER=appuser
+#SHUTDOWN_WAIT is wait time in seconds for java process to stop
+SHUTDOWN_WAIT=4
+
+es_pid() {
+# echo 'ps -fe | grep '$CATALINA_HOME' | grep -v grep | tr -s " "|cut -d" " -f2'
+cat $ES_HOME/bin/elasticsearch.pid
+}
+
+start() {
+pid=$(es_pid)
+touch  $ES_HOME/bin/elasticsearch.pid
+if [ -n "$pid" ]
+then
+echo -e "\e[00;31melasticsearch is already running (pid: $pid)\e[00m"
+else
+# Start elastic
+echo -e "\e[00;32mStarting elasticsearch\e[00m"
+#ulimit -n 100000
+#umask 007
+#/bin/su -p -s /bin/sh $TOMCAT_USER
+if [ 'user_exists $ES_USER' = "1" ]
+then
+$ES_HOME/bin/elasticsearch -d -p $ES_HOME/bin/elasticsearch.pid
+else
+$ES_HOME/bin/elasticsearch -d -p $ES_HOME/bin/elasticsearch.pid
+fi
+status
+fi
+return 0
+}
+
+status(){
+pid=$(es_pid)
+if [ -n "$pid" ]; then echo -e "\e[00;32melasticsearch is running with pid: $pid\e[00m"
+else echo -e "\e[00;31melasticsearch is not running\e[00m"
+fi
+}
+
+stop() {
+"elasticsearch" 88L, 1881C
